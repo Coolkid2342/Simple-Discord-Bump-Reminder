@@ -19,13 +19,10 @@ client.on("ready", () => {
   }, 5000);
 });
 async function bumpReady(obj, client) {
-  console.log("1");
   var embed = new Discord.MessageEmbed()
     .setTitle("Bump Ready!")
     .setDescription("The server bump is now ready!");
-  console.log("2");
   await client.channels.fetch(obj.channelID).then((channel) => {
-    console.log("3");
     channel.send(embed);
   });
   fs.unlinkSync("./bumps.json");
