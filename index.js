@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
-require("discord-reply");
-const client = new Discord.Client();
+const client = new Discord.Client({intents: [Discord.Intents.FLAGS.GUILD_MESSAGES]});
 const { token } = require("./config.json");
 const fs = require("fs");
 client.login(token);
