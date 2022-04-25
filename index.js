@@ -17,6 +17,7 @@ client.on("ready", () => {
     }
   }, 5000);
 });
+
 async function bumpReady(obj, client) {
   var embed = new Discord.MessageEmbed()
     .setTitle("Bump Ready!")
@@ -26,32 +27,44 @@ async function bumpReady(obj, client) {
   });
   fs.unlinkSync("./bumps.json");
 }
+
 client.on("message", (message) => {
+  // Check if message is from the DISBOARD bot
   if (message.author.id === "302050872383242240") {
+    // Check if the message is about the bump
     if (message.embeds[0].description.includes("Bump done")) {
+      // Create variables for the bump.json file
       var timeforfinish = Date.now() + 7200000;
       var forTheFile = `{
     "endtime": ${timeforfinish},
     "channelID": "${message.channel.id}"
   }`;
+      // Create the bump.json file
       fs.writeFile("./bumps.json", forTheFile, (err) => {
         if (err) {
+          // If the file write fails sends error to channel the bump happened
           message.channel.send(err);
         } else {
+          // If everything runs smoothly react to the message to simplize it worked.
           message.react("⏰");
         }
       });
     }
+    // If message starts with !forceReminder run this function
   } else if (message.content.startsWith("!forceReminder")) {
+          // Create variables for the bump.json file
     var timeforfinish = Date.now() + 7200000;
     var forTheFile = `{
   "endtime": ${timeforfinish},
   "channelID": "${message.channel.id}"
 }`;
+    // Create the bumps.json file
     fs.writeFile("./bumps.json", forTheFile, (err) => {
       if (err) {
+        // If the file write fails sends error to channel the bump happened
         message.channel.send(err);
       } else {
+        // If everything runs smoothly react to the message to simplize it worked.
         message.react("⏰");
       }
     });
