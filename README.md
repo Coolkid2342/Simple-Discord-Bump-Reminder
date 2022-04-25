@@ -2,9 +2,13 @@
 
 Simple Discord  Bump Reminder is to be used with the DISBOARD bot to remind you when your next bump is!
 
+## Before Usuage
+
+The bot you choose to use this with will need the Message Content Intent to be able to detect the DISBOARD bot.
+
 ## Installation
 
-Make sure you have Node.JS 14.17.3 or higher!
+Make sure you have Node.JS 16.6.0 or higher!
 
 
 Stick the bot files into a folder and run
